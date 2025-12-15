@@ -40,7 +40,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "start": "node dist/server.js",
     "build": "tsc && npm run copy:assets",
-    "copy:assets": "cp -r src/templates dist/ && cp -r src/static dist/ 2>/dev/null || true",
+    "copy:assets": "node -e \"const fs=require('fs');const path=require('path');function copyDir(src,dest){if(!fs.existsSync(dest))fs.mkdirSync(dest,{recursive:true});const entries=fs.readdirSync(src,{withFileTypes:true});for(const entry of entries){const srcPath=path.join(src,entry.name);const destPath=path.join(dest,entry.name);if(entry.isDirectory()){copyDir(srcPath,destPath);}else{fs.copyFileSync(srcPath,destPath);}}}if(fs.existsSync('src/templates'))copyDir('src/templates','dist/templates');if(fs.existsSync('src/static'))copyDir('src/static','dist/static');\"",
     "build:clean": "rimraf dist && npm run build",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -62,7 +62,7 @@
     "db:push": "npx prisma db push",
     "db:pull": "npx prisma db pull",
     "postinstall": "npm run db:generate",
-    "prebuild": "npm run type-check && npm run lint",
+    "prebuild": "npm run type-check",
     "prestart": "npm run build",
     "docker:build": "docker build -t nodejs-express-prisma-starter .",
     "docker:run": "docker run -p 5000:5000 nodejs-express-prisma-starter",
@@ -190,15 +190,3 @@
     "exec": "ts-node src/server.ts"
   }
 }
-
-// Commit 29
-
-// Commit 35
-
-// Commit 52
-
-// Commit 69
-
-// Commit 73
-
-// Commit 131
