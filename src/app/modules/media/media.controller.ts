@@ -1,32 +1,35 @@
-import { Request, Response } from "express";
+import { FastifyReply, FastifyRequest } from "fastify";
+import { StatusCodes } from "http-status-codes";
+
 import { catchAsync } from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
+
 import { MediaServices } from "./media.service";
 
 // Upload multiple files with metadata
-const uploadMultipleMedia = catchAsync(async (req: Request, res: Response) => {
-  const files = req.files as Express.Multer.File[];
-  const folder = req.body.folder || "";
+const uploadMultipleMedia = catchAsync(async (request: FastifyRequest, reply: FastifyReply) => {
+  const files = (request as any).files;
+  const folder = (request.body as any).folder || "";
 
   if (!files || files.length === 0) {
-    return sendResponse(res, {
-      status: 400,
+    return sendResponse(reply, {
+      statusCode: StatusCodes.BAD_REQUEST,
       success: false,
       message: "No files uploaded",
     });
   }
 
-  const uploaded = await MediaServices.uploadMultiple(files, {
+  const uploaded = await MediaServices.uploadMultipleMedia(files, {
     folder,
-    altText: req.body.altText,
-    title: req.body.title,
-    caption: req.body.caption,
-    description: req.body.description,
-    uploadedBy: req.body.userId,
+    altText: (request.body as any).altText,
+    title: (request.body as any).title,
+    caption: (request.body as any).caption,
+    description: (request.body as any).description,
+    uploadedBy: (request.body as any).userId,
   });
 
-  sendResponse(res, {
-    status: 201,
+  sendResponse(reply, {
+    statusCode: StatusCodes.CREATED,
     success: true,
     message: "Files uploaded successfully",
     data: uploaded,
@@ -34,10 +37,10 @@ const uploadMultipleMedia = catchAsync(async (req: Request, res: Response) => {
 });
 
 // Get all media
-const getAllMedia = catchAsync(async (req: Request, res: Response) => {
-  const data = await MediaServices.getAll();
-  sendResponse(res, {
-    status: 200,
+const getAllMedia = catchAsync(async (_request: FastifyRequest, reply: FastifyReply) => {
+  const data = await MediaServices.getAllMedia();
+  sendResponse(reply, {
+    statusCode: StatusCodes.OK,
     success: true,
     message: "All media retrieved successfully",
     data,
@@ -45,11 +48,11 @@ const getAllMedia = catchAsync(async (req: Request, res: Response) => {
 });
 
 // Get media by ID
-const getMediaById = catchAsync(async (req: Request, res: Response) => {
-  const id = Number(req.params.id);
-  const data = await MediaServices.getById(id);
-  sendResponse(res, {
-    status: 200,
+const getMediaById = catchAsync(async (request: FastifyRequest, reply: FastifyReply) => {
+  const id = Number((request.params as any).id);
+  const data = await MediaServices.getMediaById(id);
+  sendResponse(reply, {
+    statusCode: StatusCodes.OK,
     success: true,
     message: "Media retrieved successfully",
     data,
@@ -57,11 +60,11 @@ const getMediaById = catchAsync(async (req: Request, res: Response) => {
 });
 
 // Update media metadata
-const updateMedia = catchAsync(async (req: Request, res: Response) => {
-  const id = Number(req.params.id);
-  const data = await MediaServices.update(id, req.body);
-  sendResponse(res, {
-    status: 200,
+const updateMedia = catchAsync(async (request: FastifyRequest, reply: FastifyReply) => {
+  const id = Number((request.params as any).id);
+  const data = await MediaServices.updateMedia(id, request.body as any);
+  sendResponse(reply, {
+    statusCode: StatusCodes.OK,
     success: true,
     message: "Media updated successfully",
     data,
@@ -69,11 +72,11 @@ const updateMedia = catchAsync(async (req: Request, res: Response) => {
 });
 
 // Delete media
-const deleteMedia = catchAsync(async (req: Request, res: Response) => {
-  const id = Number(req.params.id);
-  const data = await MediaServices.delete(id);
-  sendResponse(res, {
-    status: 200,
+const deleteMedia = catchAsync(async (request: FastifyRequest, reply: FastifyReply) => {
+  const id = Number((request.params as any).id);
+  const data = await MediaServices.deleteMedia(id);
+  sendResponse(reply, {
+    statusCode: StatusCodes.OK,
     success: true,
     message: "Media deleted successfully",
     data,
@@ -87,17 +90,3 @@ export const MediaControllers = {
   updateMedia,
   deleteMedia,
 };
-
-// Commit 28
-
-// Commit 48
-
-// Commit 94
-
-// Commit 109
-
-// Commit 116
-
-// Commit 137
-
-// Commit 148
