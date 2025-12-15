@@ -656,15 +656,3 @@ For deployment issues:
 ---
 
 **Happy Deploying! 🚀**
-
-// Commit 89
-
-// Commit 98
-
-// Commit 100
-
-// Commit 132
-
-// Commit 134
-
-// Commit 175
