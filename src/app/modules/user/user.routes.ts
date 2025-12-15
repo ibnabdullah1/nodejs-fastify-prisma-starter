@@ -1,53 +1,77 @@
 import { UserRole } from "@prisma/client";
-import express, { NextFunction, Request, Response } from "express";
+import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+
 import { fileUploader } from "../../helpers/fileUploader";
 import auth from "../../middlewares/auth";
+
 import { userController } from "./user.controller";
 import { userValidation } from "./user.validation";
 
-const router = express.Router();
+const userRoutes = async (fastify: FastifyInstance) => {
+  fastify.post(
+    "/create-user",
+    {
+      preHandler: [fileUploader.uploadSingle("file")],
+    },
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const data = request.body as any;
+      if (data.data) {
+        request.body = userValidation.createUser.parse(JSON.parse(data.data));
+      }
+      return userController.createUser(request, reply);
+    }
+  );
 
-router.post(
-  "/create-user",
-  fileUploader.upload.single("file"),
-  (req: Request, res: Response, next: NextFunction) => {
-    req.body = userValidation.createUser.parse(JSON.parse(req.body.data));
-    return userController.createUser(req, res, next);
-  }
-);
-router.put(
-  "/update-profile",
-  fileUploader.upload.single("file"),
-  auth(UserRole.ADMIN, UserRole.CUSTOMER, UserRole.VENDOR),
-  (req: Request, res: Response, next: NextFunction) => {
-    return userController.profileUpdate(req, res, next);
-  }
-);
-router.get(
-  "/me",
-  auth(UserRole.ADMIN, UserRole.CUSTOMER, UserRole.VENDOR),
-  userController.getMyProfile
-);
-router.get("/", auth(UserRole.ADMIN), userController.getAllUsers);
-router.put(
-  "/update-role/:id",
-  auth(UserRole.ADMIN),
-  userController.updateUserRole
-);
-router.put(
-  "/update-status/:id",
-  auth(UserRole.ADMIN),
-  userController.updateUserStatus
-);
-router.get(
-  "/customer/followed-shops",
-  auth(UserRole.ADMIN, UserRole.CUSTOMER, UserRole.VENDOR),
-  userController.getCustomerFollowedShops
-);
-export const userRoutes = router;
+  fastify.put(
+    "/update-profile",
+    {
+      preHandler: [
+        fileUploader.uploadSingle("file"),
+        auth(UserRole.ADMIN, UserRole.USER),
+      ],
+    },
+    userController.profileUpdate
+  );
 
-// Commit 50
+  fastify.get(
+    "/me",
+    {
+      preHandler: auth(UserRole.ADMIN, UserRole.USER),
+    },
+    userController.getMyProfile
+  );
 
-// Commit 87
+  fastify.get(
+    "/",
+    {
+      preHandler: auth(UserRole.ADMIN),
+    },
+    userController.getAllUsers
+  );
 
-// Commit 92
+  fastify.put(
+    "/update-role/:id",
+    {
+      preHandler: auth(UserRole.ADMIN),
+    },
+    userController.updateUserRole
+  );
+
+  fastify.put(
+    "/update-status/:id",
+    {
+      preHandler: auth(UserRole.ADMIN),
+    },
+    userController.updateUserStatus
+  );
+
+  fastify.get(
+    "/customer/followed-shops",
+    {
+      preHandler: auth(UserRole.ADMIN, UserRole.USER),
+    },
+    userController.getCustomerFollowedShops
+  );
+};
+
+export { userRoutes };
