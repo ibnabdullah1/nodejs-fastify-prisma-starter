@@ -1,59 +1,65 @@
-import { Router } from "express";
-import { actionLogger } from "../../middleware/actionLogger";
-import auth from "../../middleware/auth";
-import { upload } from "../../middleware/upload";
-import { UserRole } from "../user/user.interface";
+import { UserRole } from "@prisma/client";
+import { FastifyInstance } from "fastify";
+
+import auth from "../../middlewares/auth";
+import { upload } from "../../middlewares/upload";
+
 import { MediaControllers } from "./media.controller";
 
-const router = Router();
+const MediaRoutes = async (fastify: FastifyInstance) => {
+  // List all media
+  fastify.get(
+    "/",
+    {
+      preHandler: auth(UserRole.SUPER_ADMIN),
+    },
+    MediaControllers.getAllMedia
+  );
 
-// ======================
-// List all media
-// ======================
-router.get("/", auth(UserRole.SUPER_ADMIN), MediaControllers.getAllMedia);
+  // Upload multiple files
+  fastify.post(
+    "/upload",
+    {
+      preHandler: [
+        auth(
+          UserRole.SUPER_ADMIN,
+          UserRole.ADMIN,
+          UserRole.EDITOR,
+          UserRole.PUBLISHER,
+          UserRole.USER
+        ),
+        upload.array("files"),
+      ],
+    },
+    MediaControllers.uploadMultipleMedia
+  );
 
-// ======================
-// Upload multiple files
-// ======================
-router.post(
-  "/upload",
-  auth(
-    UserRole.SUPER_ADMIN,
-    UserRole.ADMIN,
-    UserRole.EDITOR,
-    UserRole.PUBLISHER,
-    UserRole.USER
-  ),
-  upload.array("files"),
-  actionLogger,
-  MediaControllers.uploadMultipleMedia
-);
+  // Get media by ID
+  fastify.get(
+    "/:id",
+    {
+      preHandler: auth(UserRole.SUPER_ADMIN),
+    },
+    MediaControllers.getMediaById
+  );
 
-// ======================
-// Get media by ID
-// ======================
-router.get("/:id", auth(UserRole.SUPER_ADMIN), MediaControllers.getMediaById);
+  // Update media metadata
+  fastify.patch(
+    "/:id",
+    {
+      preHandler: auth(UserRole.SUPER_ADMIN),
+    },
+    MediaControllers.updateMedia
+  );
 
-// ======================
-// Update media metadata
-// ======================
-router.patch(
-  "/:id",
-  auth(UserRole.SUPER_ADMIN),
-  actionLogger,
-  MediaControllers.updateMedia
-);
+  // Delete media by ID
+  fastify.delete(
+    "/:id",
+    {
+      preHandler: auth(UserRole.SUPER_ADMIN),
+    },
+    MediaControllers.deleteMedia
+  );
+};
 
-// ======================
-// Delete media by ID
-// ======================
-router.delete(
-  "/:id",
-  auth(UserRole.SUPER_ADMIN),
-  actionLogger,
-  MediaControllers.deleteMedia
-);
-
-export const MediaRoutes = router;
-
-// Commit 7
+export { MediaRoutes };
