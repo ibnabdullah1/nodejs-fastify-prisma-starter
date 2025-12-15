@@ -28,19 +28,3 @@ export default {
   },
   db: {},
 };
-
-// Improvement commit 3
-
-// Improvement commit 8
-
-// Improvement commit 75
-
-// Improvement commit 90
-
-// Improvement commit 108
-
-// Improvement commit 190
-
-// Improvement commit 192
-
-// Improvement commit 232

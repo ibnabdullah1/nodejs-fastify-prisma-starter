@@ -144,19 +144,3 @@ export const userServices = {
   updateUserRole,
   updateUserStatus,
 };
-
-// Improvement commit 46
-
-// Improvement commit 56
-
-// Improvement commit 80
-
-// Improvement commit 127
-
-// Improvement commit 138
-
-// Improvement commit 198
-
-// Improvement commit 227
-
-// Improvement commit 238

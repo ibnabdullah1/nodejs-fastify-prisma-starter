@@ -42,19 +42,3 @@ module.exports = {
     },
   },
 };
-
-// Improvement commit 14
-
-// Improvement commit 42
-
-// Improvement commit 52
-
-// Improvement commit 166
-
-// Improvement commit 169
-
-// Improvement commit 222
-
-// Improvement commit 235
-
-// Improvement commit 240

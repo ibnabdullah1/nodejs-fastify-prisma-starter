@@ -132,11 +132,3 @@ export const MediaServices = {
   updateMedia,
   deleteMedia,
 };
-
-// Improvement commit 7
-
-// Improvement commit 13
-
-// Improvement commit 139
-
-// Improvement commit 147

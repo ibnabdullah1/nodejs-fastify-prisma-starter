@@ -9,17 +9,3 @@ export const catchAsync =
       throw error;
     }
   };
-
-// Improvement commit 6
-
-// Improvement commit 41
-
-// Improvement commit 60
-
-// Improvement commit 62
-
-// Improvement commit 101
-
-// Improvement commit 128
-
-// Improvement commit 160

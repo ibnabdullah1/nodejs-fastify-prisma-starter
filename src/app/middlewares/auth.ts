@@ -34,17 +34,3 @@ const auth = (...roles: string[]) => {
 };
 
 export default auth;
-
-// Improvement commit 55
-
-// Improvement commit 61
-
-// Improvement commit 105
-
-// Improvement commit 118
-
-// Improvement commit 193
-
-// Improvement commit 199
-
-// Improvement commit 229

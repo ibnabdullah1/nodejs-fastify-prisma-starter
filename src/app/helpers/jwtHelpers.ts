@@ -17,11 +17,3 @@ export const jwtHelpers = {
   generateToken,
   verifyToken,
 };
-
-// Improvement commit 16
-
-// Improvement commit 124
-
-// Improvement commit 154
-
-// Improvement commit 204

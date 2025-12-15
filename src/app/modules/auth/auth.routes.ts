@@ -20,7 +20,3 @@ const AuthRoutes = async (fastify: FastifyInstance) => {
 };
 
 export { AuthRoutes };
-
-// Improvement commit 170
-
-// Improvement commit 186

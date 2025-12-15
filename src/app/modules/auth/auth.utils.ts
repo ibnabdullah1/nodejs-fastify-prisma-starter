@@ -15,11 +15,3 @@ export const createToken = (
 export const verifyToken = (token: string, secret: Secret) => {
   return jwt.verify(token, secret) as JwtPayload;
 };
-
-// Improvement commit 47
-
-// Improvement commit 146
-
-// Improvement commit 201
-
-// Improvement commit 219

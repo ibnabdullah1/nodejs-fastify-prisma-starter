@@ -90,15 +90,3 @@ export const MediaControllers = {
   updateMedia,
   deleteMedia,
 };
-
-// Improvement commit 19
-
-// Improvement commit 86
-
-// Improvement commit 92
-
-// Improvement commit 136
-
-// Improvement commit 188
-
-// Improvement commit 224

@@ -75,9 +75,3 @@ const userRoutes = async (fastify: FastifyInstance) => {
 };
 
 export { userRoutes };
-
-// Improvement commit 35
-
-// Improvement commit 109
-
-// Improvement commit 137

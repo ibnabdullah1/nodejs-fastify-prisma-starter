@@ -58,15 +58,3 @@ export const AuthController = {
   refreshToken,
   changePassword,
 };
-
-// Improvement commit 33
-
-// Improvement commit 64
-
-// Improvement commit 114
-
-// Improvement commit 141
-
-// Improvement commit 177
-
-// Improvement commit 223

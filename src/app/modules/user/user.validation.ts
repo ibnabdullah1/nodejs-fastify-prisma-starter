@@ -22,25 +22,3 @@ const createUser = z.object({
 export const userValidation = {
   createUser,
 };
-
-// Improvement commit 10
-
-// Improvement commit 37
-
-// Improvement commit 45
-
-// Improvement commit 91
-
-// Improvement commit 107
-
-// Improvement commit 131
-
-// Improvement commit 150
-
-// Improvement commit 195
-
-// Improvement commit 208
-
-// Improvement commit 215
-
-// Improvement commit 221

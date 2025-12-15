@@ -22,23 +22,3 @@ export interface IJwtPayload {
   lastLogin: Date;
   profilePhoto?: string | undefined;
 }
-
-// Improvement commit 12
-
-// Improvement commit 40
-
-// Improvement commit 54
-
-// Improvement commit 96
-
-// Improvement commit 120
-
-// Improvement commit 151
-
-// Improvement commit 173
-
-// Improvement commit 180
-
-// Improvement commit 189
-
-// Improvement commit 207

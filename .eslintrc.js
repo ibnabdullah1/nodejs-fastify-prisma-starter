@@ -85,11 +85,3 @@ module.exports = {
     },
   },
 };
-
-// Improvement commit 58
-
-// Improvement commit 89
-
-// Improvement commit 181
-
-// Improvement commit 216

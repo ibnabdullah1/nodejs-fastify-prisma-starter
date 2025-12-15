@@ -12,17 +12,3 @@ class ApiError extends Error {
 }
 
 export default ApiError;
-
-// Improvement commit 23
-
-// Improvement commit 77
-
-// Improvement commit 103
-
-// Improvement commit 112
-
-// Improvement commit 125
-
-// Improvement commit 134
-
-// Improvement commit 171

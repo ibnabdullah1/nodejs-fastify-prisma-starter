@@ -15,7 +15,3 @@ const validateRequest =
   };
 
 export default validateRequest;
-
-// Improvement commit 126
-
-// Improvement commit 237

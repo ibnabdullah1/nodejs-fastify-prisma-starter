@@ -35,21 +35,3 @@ export const AuthValidation = {
   refreshTokenZodSchema,
   changePasswordZodSchema,
 };
-
-// Improvement commit 32
-
-// Improvement commit 43
-
-// Improvement commit 49
-
-// Improvement commit 59
-
-// Improvement commit 84
-
-// Improvement commit 106
-
-// Improvement commit 111
-
-// Improvement commit 132
-
-// Improvement commit 133

@@ -33,23 +33,3 @@ export type IFile = {
   path: string;
   size: number;
 };
-
-// Improvement commit 5
-
-// Improvement commit 18
-
-// Improvement commit 28
-
-// Improvement commit 50
-
-// Improvement commit 65
-
-// Improvement commit 73
-
-// Improvement commit 110
-
-// Improvement commit 159
-
-// Improvement commit 167
-
-// Improvement commit 236

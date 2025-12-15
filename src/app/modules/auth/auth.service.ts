@@ -136,19 +136,3 @@ export const AuthService = {
   refreshToken,
   changePassword,
 };
-
-// Improvement commit 38
-
-// Improvement commit 93
-
-// Improvement commit 104
-
-// Improvement commit 155
-
-// Improvement commit 156
-
-// Improvement commit 179
-
-// Improvement commit 200
-
-// Improvement commit 218

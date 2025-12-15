@@ -17,11 +17,3 @@ export const formatDate = (dateString: string) => {
 
   return `${formattedDate} ${formattedTime}`;
 };
-
-// Improvement commit 25
-
-// Improvement commit 72
-
-// Improvement commit 143
-
-// Improvement commit 246

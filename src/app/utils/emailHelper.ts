@@ -38,7 +38,7 @@ const sendEmail = async (
 
     // Mail options
     const mailOptions: any = {
-      from: `"Altium Medicare" <${config.emailSender.email}>`, // Using config.emailSender.email
+      from: `"API Server" <${config.emailSender.email}>`, // Using config.emailSender.email
       to,
       subject,
       html,
@@ -77,11 +77,3 @@ export const EmailHelper = {
   sendEmail,
   createEmailContent,
 };
-
-// Improvement commit 162
-
-// Improvement commit 182
-
-// Improvement commit 196
-
-// Improvement commit 203
