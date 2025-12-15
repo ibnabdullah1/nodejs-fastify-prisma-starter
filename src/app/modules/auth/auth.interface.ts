@@ -1,4 +1,4 @@
-import { UserRole } from "../user/user.interface";
+import { UserRole } from "@prisma/client";
 
 export interface IAuth {
   email: string;
@@ -14,19 +14,11 @@ export interface IAuth {
 }
 
 export interface IJwtPayload {
-  user_id: string;
+  userId: number;
   name: string;
   email: string;
   role: UserRole;
-  is_active: boolean;
-  last_login: Date;
-  profile_photo?: string;
+  isActive: boolean;
+  lastLogin: Date;
+  profilePhoto?: string | undefined;
 }
-
-// Commit 37
-
-// Commit 106
-
-// Commit 125
-
-// Commit 135
