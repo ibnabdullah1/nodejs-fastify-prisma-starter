@@ -17,3 +17,5 @@ const sendResponse = <T>(reply: FastifyReply, data: TResponse<T>) => {
 };
 
 export default sendResponse;
+
+// Improvement commit 11
