@@ -1,25 +1,16 @@
-import { NextFunction, Request, Response } from "express";
+import { FastifyError, FastifyReply, FastifyRequest } from "fastify";
 import httpStatus from "http-status";
 
 const globalErrorHandler = (
-  err: any,
-  req: Request,
-  res: Response,
-  next: NextFunction
+  error: FastifyError,
+  _request: FastifyRequest,
+  reply: FastifyReply
 ) => {
-  res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+  reply.status(error.statusCode || httpStatus.INTERNAL_SERVER_ERROR).send({
     success: false,
-    message: err.message || "Something went wrong!",
-    error: err,
+    message: error.message || "Something went wrong!",
+    error,
   });
 };
 
 export default globalErrorHandler;
-
-// Commit 45
-
-// Commit 99
-
-// Commit 112
-
-// Commit 140
