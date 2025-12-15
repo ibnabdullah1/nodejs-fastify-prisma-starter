@@ -1,8 +1,13 @@
-import { PrismaClient } from "@prisma/client";
 import fs from "fs";
-import httpStatus from "http-status";
 import path from "path";
+
+import { PrismaClient } from "@prisma/client";
+import httpStatus from "http-status";
+
+
 import ApiError from "../../errors/ApiError";
+import { IFile } from "../../interfaces/file";
+
 import { IMedia } from "./media.interface";
 
 const prisma = new PrismaClient();
@@ -12,9 +17,9 @@ const UPLOADS_PATH = path.join(__dirname, "../../uploads");
 // Upload Multiple Media
 // ================================
 const uploadMultipleMedia = async (
-  files: Express.Multer.File[],
+  files: IFile[],
   meta: Partial<IMedia>
-) => {
+): Promise<IMedia[]> => {
   if (!files || files.length === 0)
     throw new ApiError(httpStatus.BAD_REQUEST, "No files uploaded");
 
@@ -34,19 +39,31 @@ const uploadMultipleMedia = async (
     const media = await prisma.media.create({
       data: {
         name: file.filename,
-        url: `/uploads/${meta.folder ? meta.folder + "/" : ""}${file.filename}`,
-        folder: meta.folder,
+        url: `/uploads/${meta.folder ? `${meta.folder  }/` : ""}${file.filename}`,
+        folder: meta.folder || null,
         type: file.mimetype,
         size: file.size,
         uploadedBy: meta.uploadedBy || null,
-        altText: meta.altText || "",
-        title: meta.title || "",
-        caption: meta.caption || "",
-        description: meta.description || "",
+        altText: meta.altText || null,
+        title: meta.title || null,
+        caption: meta.caption || null,
+        description: meta.description || null,
       },
     });
 
-    uploaded.push(media);
+    uploaded.push({
+      id: media.id,
+      name: media.name,
+      url: media.url,
+      folder: media.folder ?? undefined,
+      type: media.type,
+      size: media.size,
+      uploadedBy: media.uploadedBy ?? undefined,
+      altText: media.altText ?? undefined,
+      title: media.title ?? undefined,
+      caption: media.caption ?? undefined,
+      description: media.description ?? undefined,
+    } as IMedia);
   }
 
   return uploaded;
@@ -64,7 +81,7 @@ const getAllMedia = async () => {
 // ================================
 // Get Media by ID
 // ================================
-const getMediaById = async (id: string) => {
+const getMediaById = async (id: number) => {
   const media = await prisma.media.findUnique({ where: { id } });
   if (!media) throw new ApiError(httpStatus.NOT_FOUND, "Media not found");
   return media;
@@ -73,7 +90,7 @@ const getMediaById = async (id: string) => {
 // ================================
 // Update Media Metadata
 // ================================
-const updateMedia = async (id: string, payload: Partial<IMedia>) => {
+const updateMedia = async (id: number, payload: Partial<IMedia>) => {
   const media = await prisma.media.findUnique({ where: { id } });
   if (!media) throw new ApiError(httpStatus.NOT_FOUND, "Media not found");
 
@@ -82,21 +99,19 @@ const updateMedia = async (id: string, payload: Partial<IMedia>) => {
     const oldPath = path.join(UPLOADS_PATH, media.folder || "", media.name);
     const newPath = path.join(UPLOADS_PATH, media.folder || "", payload.name);
     if (fs.existsSync(oldPath)) fs.renameSync(oldPath, newPath);
-    payload.url = `/uploads/${media.folder ? media.folder + "/" : ""}${
-      payload.name
-    }`;
+    payload.url = `/uploads/${media.folder ? `${media.folder  }/` : ""}${payload.name}`;
   }
 
   return await prisma.media.update({
     where: { id },
-    data: payload,
+    data: payload as any, // Cast to any to allow partial updates
   });
 };
 
 // ================================
 // Delete Media
 // ================================
-const deleteMedia = async (id: string) => {
+const deleteMedia = async (id: number) => {
   const media = await prisma.media.findUnique({ where: { id } });
   if (!media) throw new ApiError(httpStatus.NOT_FOUND, "Media not found");
 
@@ -117,13 +132,3 @@ export const MediaServices = {
   updateMedia,
   deleteMedia,
 };
-
-// Commit 83
-
-// Commit 97
-
-// Commit 104
-
-// Commit 163
-
-// Commit 174
