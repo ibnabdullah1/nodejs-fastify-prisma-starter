@@ -19,3 +19,5 @@ const sendResponse = <T>(reply: FastifyReply, data: TResponse<T>) => {
 export default sendResponse;
 
 // Improvement commit 11
+
+// Improvement commit 24
