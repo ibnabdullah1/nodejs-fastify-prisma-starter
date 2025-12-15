@@ -1,25 +1,19 @@
-import { Response } from "express";
+import { FastifyReply } from "fastify";
 
 type TResponse<T> = {
-  status: number;
+  statusCode: number;
   success: boolean;
   message?: string;
   data?: T;
 };
 
-const sendResponse = <T>(res: Response, data: TResponse<T>) => {
-  res.status(data?.status).json({
+const sendResponse = <T>(reply: FastifyReply, data: TResponse<T>) => {
+  reply.status(data?.statusCode).send({
     success: data.success,
-    status: data?.status,
+    statusCode: data?.statusCode,
     message: data.message,
     data: data.data,
   });
 };
 
 export default sendResponse;
-
-// Commit 44
-
-// Commit 122
-
-// Commit 182
