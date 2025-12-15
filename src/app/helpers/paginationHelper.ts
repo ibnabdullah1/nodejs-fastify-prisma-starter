@@ -35,3 +35,5 @@ const calculatePagination = (options: IOptions): IOptionsResult => {
 export const paginationHelper = {
     calculatePagination
 }
+
+// Improvement commit 15
