@@ -1,4 +1,5 @@
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
+
 import { IJwtPayload } from "./auth.interface";
 
 export const createToken = (
@@ -14,13 +15,3 @@ export const createToken = (
 export const verifyToken = (token: string, secret: Secret) => {
   return jwt.verify(token, secret) as JwtPayload;
 };
-
-// Commit 18
-
-// Commit 58
-
-// Commit 96
-
-// Commit 138
-
-// Commit 156
