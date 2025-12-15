@@ -1,11 +1,17 @@
-# Node.js Fastify Prisma Starter Template
+# Node.js Fastify Prisma Starter
 
-A comprehensive, production-ready Node.js backend starter template built with Fastify, PostgreSQL, Prisma ORM, TypeScript, and modern development practices.
+**Production-ready Node.js Fastify Prisma starter** for building scalable REST APIs with TypeScript, PostgreSQL, and modern development practices. A clean architecture Fastify Prisma boilerplate with JWT authentication, Docker support, and comprehensive documentation.
+
+## Why this Fastify Prisma starter?
+
+This **Node.js Fastify Prisma starter template** provides everything you need to build production-ready REST APIs quickly. Built with Fastify (high-performance web framework), Prisma ORM (type-safe database access), and TypeScript for a robust development experience.
 
 ## 🚀 Features
 
-- **🔧 Modern Stack**: Node.js, Fastify, TypeScript, PostgreSQL, Prisma ORM
-- **🔐 Authentication**: JWT-based authentication with refresh tokens
+This **Fastify Prisma TypeScript starter** includes:
+
+- **🔧 Tech Stack**: Node.js, Fastify, TypeScript, PostgreSQL, Prisma ORM
+- **🔐 Authentication**: JWT-based authentication with refresh tokens (Fastify Prisma authentication starter)
 - **👥 User Management**: Complete user CRUD with role-based access control
 - **📁 File Upload**: Cloudinary integration for media management
 - **📧 Email Service**: Nodemailer integration for email functionality
@@ -13,9 +19,10 @@ A comprehensive, production-ready Node.js backend starter template built with Fa
 - **📊 Database**: PostgreSQL with Prisma ORM for type-safe operations
 - **🧪 Testing**: Jest setup with coverage reporting
 - **📝 Code Quality**: ESLint, Prettier, Husky for code standards
-- **🐳 Docker**: Complete Docker setup with docker-compose
+- **🐳 Docker**: Dockerized Fastify Prisma starter with docker-compose
 - **📚 Documentation**: Comprehensive documentation and API reference
 - **🔄 CI/CD Ready**: GitHub Actions workflow templates
+- **⚡ Module Generation**: Automated module creation and renaming scripts
 
 ## 📋 Prerequisites
 
@@ -24,7 +31,7 @@ A comprehensive, production-ready Node.js backend starter template built with Fa
 - **PostgreSQL** database
 - **Git**
 
-## ⚡ Quick Start
+## ⚡ Getting Started with Node.js Fastify Prisma Boilerplate
 
 ### 1. Clone the Repository
 
@@ -148,7 +155,7 @@ The template includes the following models:
 
 ## 🛠️ Module Generation
 
-This template includes powerful scripts to quickly generate and manage modules.
+This **Fastify Prisma starter template for Node.js** includes powerful scripts to quickly generate and manage modules with clean architecture patterns.
 
 ### Create a New Module
 

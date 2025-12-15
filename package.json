@@ -1,7 +1,7 @@
 {
   "name": "nodejs-fastify-prisma-starter",
   "version": "1.0.0",
-  "description": "A comprehensive Node.js backend starter template with Fastify, PostgreSQL, Prisma ORM, JWT authentication, file upload, and more",
+  "description": "Production-ready Node.js Fastify Prisma starter for REST API with authentication, Docker, and TypeScript",
   "main": "dist/server.js",
   "engines": {
     "node": ">=16.0.0",
@@ -10,17 +10,26 @@
   "keywords": [
     "nodejs",
     "fastify",
+    "prisma",
+    "starter",
+    "starter-template",
+    "boilerplate",
+    "scaffold",
     "typescript",
     "postgresql",
-    "prisma",
-    "jwt",
-    "authentication",
-    "file-upload",
-    "api",
+    "rest-api",
     "backend",
-    "starter",
-    "template",
-    "boilerplate"
+    "jwt-auth",
+    "authentication",
+    "docker",
+    "clean-architecture",
+    "fastify-prisma",
+    "fastify-starter",
+    "prisma-starter",
+    "nodejs-api",
+    "api-starter",
+    "backend-starter",
+    "production-ready"
   ],
   "author": {
     "name": "Ibn Abdullah",
