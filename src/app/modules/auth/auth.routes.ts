@@ -1,25 +1,22 @@
-import { Router } from "express";
-import auth from "../../middleware/auth";
-import clientInfoParser from "../../middleware/clientInfoParser";
-import { UserRole } from "../user/user.interface";
+import { UserRole } from "@prisma/client";
+import { FastifyInstance } from "fastify";
+
+import auth from "../../middlewares/auth";
+
 import { AuthController } from "./auth.controller";
 
-const router = Router();
+const AuthRoutes = async (fastify: FastifyInstance) => {
+  fastify.post("/login", AuthController.loginUser);
 
-router.post("/login", clientInfoParser, AuthController.loginUser);
+  fastify.post("/refresh-token", AuthController.refreshToken);
 
-router.post("/refresh-token", AuthController.refreshToken);
+  fastify.post(
+    "/change-password",
+    {
+      preHandler: auth(UserRole.SUPER_ADMIN, UserRole.USER),
+    },
+    AuthController.changePassword
+  );
+};
 
-router.post(
-  "/change-password",
-  auth(UserRole.SUPER_ADMIN, UserRole.USER),
-  AuthController.changePassword
-);
-
-export const AuthRoutes = router;
-
-// Commit 47
-
-// Commit 88
-
-// Commit 130
+export { AuthRoutes };
