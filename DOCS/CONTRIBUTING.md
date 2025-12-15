@@ -407,9 +407,3 @@ By contributing to this project, you agree that your contributions will be licen
 ---
 
 **Thank you for contributing! 🎉**
-
-// Commit 16
-
-// Commit 80
-
-// Commit 181
