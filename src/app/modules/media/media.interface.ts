@@ -1,4 +1,5 @@
 export interface IMedia {
+  id?: number;
   name: string;
   url: string;
   folder?: string;
@@ -10,13 +11,3 @@ export interface IMedia {
   caption?: string;
   description?: string;
 }
-
-// Commit 59
-
-// Commit 166
-
-// Commit 170
-
-// Commit 177
-
-// Commit 186
