@@ -80,3 +80,5 @@ export const fileUploader = {
   uploadSingle,
   uploadArray,
 };
+
+// Improvement commit 1
