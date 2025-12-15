@@ -35,17 +35,3 @@ const calculatePagination = (options: IOptions): IOptionsResult => {
 export const paginationHelper = {
     calculatePagination
 }
-
-// Commit 20
-
-// Commit 24
-
-// Commit 121
-
-// Commit 133
-
-// Commit 142
-
-// Commit 155
-
-// Commit 158
