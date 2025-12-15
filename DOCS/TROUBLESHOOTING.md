@@ -423,17 +423,3 @@ docker-compose logs
 ---
 
 **Happy Debugging! 🐛**
-
-// Commit 12
-
-// Commit 33
-
-// Commit 34
-
-// Commit 93
-
-// Commit 107
-
-// Commit 119
-
-// Commit 183
