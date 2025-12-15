@@ -1,10 +1,13 @@
 import * as fs from "fs";
-import nodemailer from "nodemailer";
 import * as path from "path";
-import config from "../config";
-const Util = require("util");
-const ReadFile = Util.promisify(fs.readFile);
-const Handlebars = require("handlebars");
+import { promisify } from "util";
+
+import Handlebars from "handlebars";
+import nodemailer from "nodemailer";
+
+import config from "../../config";
+
+const ReadFile = promisify(fs.readFile);
 
 interface Attachment {
   filename: string;
@@ -19,17 +22,14 @@ const sendEmail = async (
   attachment?: Attachment
 ) => {
   try {
-    // Determine secure based on env port
-    const secure = Number(config.mail_port) === 465;
-
     // Create transporter
     const transporter = nodemailer.createTransport({
-      host: config.mail_host,
-      port: Number(config.mail_port),
-      secure: secure, // true for 465, false for 587 STARTTLS
+      host: "smtp.gmail.com", // Hardcoded for now, should be in config
+      port: 587, // Hardcoded for now, should be in config
+      secure: false, // Use `false` for port 587, `true` for 465
       auth: {
-        user: config.mail_username,
-        pass: config.mail_password,
+        user: config.emailSender.email,
+        pass: config.emailSender.app_pass,
       },
       tls: {
         rejectUnauthorized: false,
@@ -38,7 +38,7 @@ const sendEmail = async (
 
     // Mail options
     const mailOptions: any = {
-      from: `"${config.mail_from_name}" <${config.mail_from_address}>`,
+      from: `"Altium Medicare" <${config.emailSender.email}>`, // Using config.emailSender.email
       to,
       subject,
       html,
@@ -77,11 +77,3 @@ export const EmailHelper = {
   sendEmail,
   createEmailContent,
 };
-
-// Commit 15
-
-// Commit 77
-
-// Commit 86
-
-// Commit 144
