@@ -22,3 +22,5 @@ const createUser = z.object({
 export const userValidation = {
   createUser,
 };
+
+// Improvement commit 10
